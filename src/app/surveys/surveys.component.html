@@ -1,0 +1,50 @@
+<form id="document-edit" (ngSubmit)="onSubmit(f)" #f="ngForm" >
+    <div class="row">
+
+      <div class="col-sm-12 form-group">
+        <label for="name">What is your first name?</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          size="120"
+          max="120"
+          name="name"
+          required>
+      </div>
+
+      <div class="col-sm-12 form-group">
+        <label for="major">What is your major?</label>
+        <input
+          type="text"
+          id="major"
+          class="form-control"
+          size="120"
+          max="255"
+          name="major">
+      </div>
+
+      <div class="col-sm-12 form-group">
+        <label for="dish">What is your favorite dish?</label>
+        <input
+          type="text"
+          id="dish"
+          class="form-control"
+          size="150"
+          max="255"
+          name="dish"
+          required>
+      </div>
+    </div>
+
+    <div class="alert alert-danger">
+      <p>The first and last questions are required fields.</p>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <button class="btn btn-success" type="submit">Submit</button>
+        <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+
+  </form>
