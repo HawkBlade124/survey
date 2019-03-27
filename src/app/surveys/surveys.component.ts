@@ -12,4 +12,8 @@ export class SurveysComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(){
+
+  }
+
 }

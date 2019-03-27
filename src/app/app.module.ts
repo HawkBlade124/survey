@@ -5,8 +5,10 @@ import { AppComponent } from './app.component';
 import { ResponsesComponent } from './responses/responses.component';
 import { SurveysComponent } from './surveys/surveys.component';
 import { HeadersComponent } from './headers/headers.component';
+import { ResponseListComponent } from './responses/response-list/response-list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ResponseViewComponent } from './responses/response-view/response-view.component';
 
 const appRoutes: Routes =[
   {path: '', component: SurveysComponent},
@@ -19,7 +21,8 @@ const appRoutes: Routes =[
     ResponsesComponent,
     SurveysComponent,
     HeadersComponent,
-
+    ResponseListComponent,
+    ResponseViewComponent
   ],
   imports: [
     BrowserModule,
