@@ -10,13 +10,13 @@ var mongoose = require('mongoose');
 // import the routing file to handle the default (index) route
 var index = require('./server/routes/app');
 //Get defined routing files
-const responseRoutes = require('./server/routes/messages');
+const responseRoutes = require('./server/routes/response');
 
 
 // establish a connection to the mongo database
 // *** Important *** change yourPort and yourDatabase
 //     to those used by your database
-mongoose.connect('mongodb://localhost:27017/cms', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://benful1:EqAat8iuEkVSQQku@survey-qlklq.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
 
 var app = express(); // create an instance of express
 
@@ -26,10 +26,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(logger('dev')); // Tell express to use the Morgan logger
-
-
-
-
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
