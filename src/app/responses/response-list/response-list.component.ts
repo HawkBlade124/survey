@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-response-list',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./response-list.component.css']
 })
 export class ResponseListComponent implements OnInit {
-
+  @Input() response: Response;
+  @Input() index: number;
   constructor() { }
 
   ngOnInit() {

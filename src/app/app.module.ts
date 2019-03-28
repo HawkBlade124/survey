@@ -9,6 +9,8 @@ import { ResponseListComponent } from './responses/response-list/response-list.c
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResponseViewComponent } from './responses/response-view/response-view.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 const appRoutes: Routes =[
   {path: '', component: SurveysComponent},
@@ -22,12 +24,15 @@ const appRoutes: Routes =[
     SurveysComponent,
     HeadersComponent,
     ResponseListComponent,
-    ResponseViewComponent
+    ResponseViewComponent,
+
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
+    HttpClientModule,
+    HttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

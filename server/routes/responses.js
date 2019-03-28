@@ -73,12 +73,12 @@ router.delete('/:id', function (request, response, next) {
           error: { response: 'Response not found' }
         });
       }
-  
+
       response.name = request.body.name;
-  
+
       Document.updateOne({id: req.params.id }, document)
       .then
     });
-  
   });
-module.exports = router;
+});
+module.exports = router

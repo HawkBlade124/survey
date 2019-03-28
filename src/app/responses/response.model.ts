@@ -1,4 +1,4 @@
-export class ResponseModel{
+export class Response{
 
   constructor(  public id: string,
     public name: string,
