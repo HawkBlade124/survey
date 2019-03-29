@@ -7,7 +7,7 @@ const Response = require("./model/responses");
 const app = express();
 
 // mongoose.connect('', { useNewUrlParser: true });
-mongoose.connect( "mongodb+srv://benful1:EqAat8iuEkVSQQku@survey-qlklq.mongodb.net/test?retryWrites=true"
+mongoose.connect( "mongodb+srv://benful1:w33D65QNfmwyDw3a@survey-qlklq.mongodb.net/survey?retryWrites=true", { useNewUrlParser: true}
   )
   .then(() => {
     console.log("Connected to database!");
