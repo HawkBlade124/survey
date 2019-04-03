@@ -1,52 +1,69 @@
-const app = require("./server/app");
-const debug = require("debug")("node-angular");
-const http = require("http");
+// Get dependencies
+var express = require('express');
+var path = require('path');
+var http = require('http');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var mongoose = require('mongoose');
 
-const normalizePort = val => {
-  var port = parseInt(val, 10);
+// import the routing file to handle the default (index) route
+var index = require('./server/app');
+//Get defined routing files
+const responsesRoutes = require('./server/routes/responses');
 
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
+// establish a connection to the mongo database
+// *** Important *** change yourPort and yourDatabase
+//     to those used by your database
+mongoose.connect( "mongodb+srv://benful1:andHwqR0CE8Pmq4h@survey-qlklq.mongodb.net/survey?retryWrites=true", { useNewUrlParser: true}
+  )
+  .then(() => {
+    console.log("Connected to database!");
+  })
+  .catch(() => {
+    console.log("Connection failed!");
+  });
 
-  if (port >= 0) {
-    // port number
-    return port;
-  }
+var app = express(); // create an instance of express
 
-  return false;
-};
+// Tell express to use the following parsers for POST data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-const onError = error => {
-  if (error.syscall !== "listen") {
-    throw error;
-  }
-  const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
-  switch (error.code) {
-    case "EACCES":
-      console.error(bind + " requires elevated privileges");
-      process.exit(1);
-      break;
-    case "EADDRINUSE":
-      console.error(bind + " is already in use");
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-};
+app.use(logger('dev')); // Tell express to use the Morgan logger
 
-const onListening = () => {
-  const addr = server.address();
-  const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
-  debug("Listening on " + bind);
-};
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader("Access-Control-Allow-Headers",
+  "Origin,X-Requested-With, Content-Type, Accept"
+  );
+  res.setHeader("Access-Control-Allow-Methods",
+  "GET, POST, PATCH, DELETE, PUT, OPTIONS"
+  );
+  next();
+});
 
-const port = normalizePort(process.env.PORT || "3000");
-app.set("port", port);
+// Tell express to use the specified director as the
+// root directory for your web site
+app.use(express.static(path.join(__dirname, 'dist/survey')));
 
+// Tell express to map the default route ("/") to the index route
+app.use('/', index);
+app.use('/responses', responsesRoutes);
+
+
+// Tell express to map all other non-defined routes back to the index page
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/survey/index.html'));
+});
+
+// Define the port address and tell express to use this port
+const port = process.env.PORT || '3000';
+app.set('port', port);
+
+// Create HTTP server.
 const server = http.createServer(app);
-server.on("error", onError);
-server.on("listening", onListening);
-server.listen(port);
+
+// Tell the server to start listening on the provided port
+server.listen(port, function() {console.log("API running on localhost: " + port)});

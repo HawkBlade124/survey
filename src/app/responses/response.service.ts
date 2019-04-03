@@ -26,7 +26,7 @@ export class ResponseService {
    }
 
    getResponses(){
-     this.http.get<{message: string, responses: Response[]}> ('http://localhost:3000/response')
+     this.http.get<{message: string, responses: Response[]}> ('http://localhost:3000/responses')
      .subscribe(
        (responseData) => {
          this.responses = responseData.responses;

@@ -1,9 +1,8 @@
-const mongoose = require('mongoose');
-
-const responseSchema = mongoose.Schema({
+var mongoose = require('mongoose');
+const schema = mongoose.Schema({
   name: { type: String, required: true },
   major: { type: String, required: true },
   food: { type: String, required: true }
 });
 
-module.exports = mongoose.model('Response', responseSchema);
+module.exports = mongoose.model('Responses', schema);
