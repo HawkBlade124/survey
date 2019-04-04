@@ -8,14 +8,14 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 // import the routing file to handle the default (index) route
-var index = require('./server/app');
+var index = require('./server/routes/app');
 //Get defined routing files
 const responsesRoutes = require('./server/routes/responses');
-
+const surveyRoutes = require('./server/routes/surveys');
 // establish a connection to the mongo database
 // *** Important *** change yourPort and yourDatabase
 //     to those used by your database
-mongoose.connect( "mongodb+srv://benful1:andHwqR0CE8Pmq4h@survey-qlklq.mongodb.net/survey?retryWrites=true", { useNewUrlParser: true}
+mongoose.connect( "mongodb://localhost:27017/surveys", { useNewUrlParser: true}
   )
   .then(() => {
     console.log("Connected to database!");
@@ -51,7 +51,7 @@ app.use(express.static(path.join(__dirname, 'dist/survey')));
 // Tell express to map the default route ("/") to the index route
 app.use('/', index);
 app.use('/responses', responsesRoutes);
-
+app.use('/survey', surveyRoutes);
 
 // Tell express to map all other non-defined routes back to the index page
 app.get('*', (req, res) => {
