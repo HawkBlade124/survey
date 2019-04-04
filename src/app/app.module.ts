@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResponseViewComponent } from './responses/response-view/response-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { ResponseEditComponent } from './responses/response-edit/response-edit.component';
+import { ResponseDetailComponent } from './responses/response-detail/response-detail.component';
+import { ResponseItemComponent } from './responses/response-item/response-item.component';
 
 const appRoutes: Routes =[
   {path: '', component: SurveysComponent},
@@ -25,6 +28,9 @@ const appRoutes: Routes =[
     HeadersComponent,
     ResponseListComponent,
     ResponseViewComponent,
+    ResponseEditComponent,
+    ResponseDetailComponent,
+    ResponseItemComponent,
 
   ],
   imports: [
@@ -34,7 +40,7 @@ const appRoutes: Routes =[
     HttpClientModule,
     HttpModule,
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

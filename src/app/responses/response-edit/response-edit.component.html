@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form id="response-edit" (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <div class="row">
+        <div class="col-sm-12 form-group">
+
+          <label for="name">Name</label>
+          <input
+          type="text"
+          id="name"
+          class="form-control"
+          size="120"
+          name="name"
+          [ngModel]="response?.name"
+          required>
+        </div>
+
+        <div class="col-sm-12 form-group">
+          <label for="description">Major</label>
+          <input
+            type="text"
+            id="major"
+            class="form-control"
+            size="120"
+            max="255"
+            name="description"
+            [ngModel]="response?.major">
+          </div>
+
+          <div class="col-sm-12 form-group">
+              <label for="description">Favorite Food</label>
+              <input
+                type="text"
+                id="food"
+                class="form-control"
+                size="120"
+                max="255"
+                name="food"
+                [ngModel]="response?.food">
+              </div>
+
+            </div>
+    </form>
+  </div>
+</div>

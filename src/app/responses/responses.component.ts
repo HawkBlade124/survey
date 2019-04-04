@@ -6,7 +6,8 @@ import { ResponseService } from './response.service';
 @Component({
   selector: 'app-responses',
   templateUrl: './responses.component.html',
-  styleUrls: ['./responses.component.css']
+  styleUrls: ['./responses.component.css'],
+  providers:[]
 })
 export class ResponsesComponent implements OnInit, OnDestroy {
   private subscription: Subscription;

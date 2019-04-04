@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Response } from './response.model';
@@ -7,12 +7,15 @@ import { Response } from './response.model';
   providedIn: 'root'
 })
 export class ResponseService {
+  responseSelectedEvent = new EventEmitter<Response>();
   responseListChangedEvent = new Subject<Response[]>();
   maxResponseId: number;
   responses: Response[] = []
   id: string;
 
-  constructor(private http: HttpClient ) { }
+  constructor(private http: HttpClient ) {
+    this.maxResponseId = this.getMaxId();
+  }
 
   getMaxId(): number{
     var maxId = 0;
@@ -34,6 +37,9 @@ export class ResponseService {
          this.responseListChangedEvent.next(this.responses.slice());
        }
      )
-
    }
+
+   getResponse(index: string) {
+    return this.responses[index];
+  }
 }

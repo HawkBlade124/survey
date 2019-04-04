@@ -1,7 +1,17 @@
-<a
-[routerLink]="[index]"
-routerLinkActive="active"
-class="list-group-item clearfix"
-style="cursor: pointer;">
-  {{response.name}}
-</a>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row pad-left-right">
+      <span class="pull-left title">Responses</span>
+      <a class="btn btn-success pull-right" routerLink="new">Add Response</a>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="center-panel">
+      <app-response-item
+      *ngFor="let responseEl of responses; let i = index"
+      [response]="responseEl"
+      [index]="i"
+      ></app-response-item>
+    </div>
+  </div>
+</div>

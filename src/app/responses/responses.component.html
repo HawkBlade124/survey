@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-md-5">
-      <app-response-list *ngFor="let response of responses"></app-response-list>
+  <div class="col-md-12">
+      <app-response-list></app-response-list>
     </div>
 <div class="col-md-12">
-    <app-response-view></app-response-view>
+    <router-outlet></router-outlet>
 </div>
 </div>
 
