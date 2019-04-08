@@ -32,7 +32,7 @@ export class ResponseEditComponent implements OnInit {
           return;
         }
 
-        this.originalResponse = this.responseService.getResponses(this.id);
+        this.originalResponse = this.responseService.getResponse(this.id);
 
         if(!this.originalResponse){
          return;
