@@ -1,3 +1,25 @@
-<p>
-  response-detail works!
-</p>
+<div class="panel panel-default" xmlns="http://www.w3.org/1999/html">
+  <div class="panel-heading">
+    <div class="row pad-all">
+      <h4 class="title margin-left-right">{{response.name}}</h4>
+      <div class="row pull-right margin-left-right">
+        <a class="btn btn-primary" (click)="onView()">View</a>
+        <a class="btn btn-info" (click)="onEditDocument()">Edit</a>
+        <a class="btn btn-danger"(click)="onDelete()">Delete</a>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="pad-left-right">
+      <div class="row">
+        <label>Currently Studying:</label>
+        <span class="label-value">{{response.major}}</span>
+      </div>
+      <br>
+      <div class="row">
+        <label>Favorite Food:</label>
+        <span class="label-value">{{response.food}}</span>
+      </div>
+    </div>
+  </div>
+</div>

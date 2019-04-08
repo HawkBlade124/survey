@@ -5,4 +5,4 @@ const schema = mongoose.Schema({
   food: { type: String, required: true }
 });
 
-module.exports = mongoose.model('Responses', schema);
+module.exports = mongoose.model('Surveys', schema);

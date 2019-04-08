@@ -15,14 +15,15 @@ const surveyRoutes = require('./server/routes/surveys');
 // establish a connection to the mongo database
 // *** Important *** change yourPort and yourDatabase
 //     to those used by your database
-mongoose.connect( "mongodb://localhost:27017/surveys", { useNewUrlParser: true}
+
+mongoose.connect( "mongodb+srv://benful1:C92J2PCPfMOtfugM@survey-qlklq.mongodb.net/survey-responses?retryWrites=true", { useNewUrlParser: true}
   )
   .then(() => {
     console.log("Connected to database!");
   })
-  .catch(() => {
-    console.log("Connection failed!");
-  });
+  // .catch(() => {
+  //   console.log("Connection failed!");
+  // });
 
 var app = express(); // create an instance of express
 
