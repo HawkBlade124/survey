@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Response } from "../response.model";
 
 @Component({
   selector: 'app-response-item',

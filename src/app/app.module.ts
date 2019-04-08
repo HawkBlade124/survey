@@ -18,7 +18,12 @@ import { ResponseItemComponent } from './responses/response-item/response-item.c
 const appRoutes: Routes =[
   {path: '', component: SurveysComponent},
   {path: 'surveys', component: SurveysComponent},
-  {path: 'responses', component: ResponsesComponent}
+  {path: 'responses', component: ResponsesComponent, children:[
+      { path: '', component: ResponseViewComponent},
+      { path: 'new', component: ResponseEditComponent},
+      { path: ':id', component: ResponseDetailComponent},
+      { path: ':id/edit', component: ResponseEditComponent}]
+   }
 ]
 @NgModule({
   declarations: [

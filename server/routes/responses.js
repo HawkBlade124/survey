@@ -10,8 +10,8 @@ router.get("/", (req, res, next) => {
       });
     });
   });
-  
-  router.post("/responses", (req,res, next) =>{
+
+  router.post("/", (req,res, next) =>{
     const response = new Response({
       name: req.body.name,
       major: req.body.major,
@@ -24,7 +24,7 @@ router.get("/", (req, res, next) => {
       });
     });
   });
-  
+
 router.delete("/responses/:id", (req, res, next)=>{
     Response.deleteOne({ _id: req.params.id }).then(result => {
       console.log(result);
