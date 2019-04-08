@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Response = require("../model/responses");
 
-router.get("/responses", (req, res, next) => {
+router.get("/", (req, res, next) => {
     Response.find().then(responses => {
       res.status(200).json({
         message: "Responses fetched successfully!",
