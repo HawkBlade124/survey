@@ -9,6 +9,7 @@ import { Response } from './response.model';
 export class ResponseService {
   responseSelectedEvent = new EventEmitter<Response>();
   responseListChangedEvent = new Subject<Response[]>();
+  private responsesUpdated = new Subject<Response[]>();
   maxResponseId: number;
   responses: Response[] = [];
   id: string;
@@ -44,11 +45,11 @@ export class ResponseService {
   }
 
   deleteResponse(responseId: string) {
-    this.http.delete("http://localhost:3000/responses/" + responseId)
+    this.http.delete("http://localhost:3000/response/" + responseId)
       .subscribe(() => {
         const updatedResponses = this.responses.filter(response => response.id !== responseId);
         this.responses = updatedResponses;
-        this.responseListChangedEvent.next([...this.responses]);
+        this.responsesUpdated.next([...this.responses]);
       });
   }
 }
