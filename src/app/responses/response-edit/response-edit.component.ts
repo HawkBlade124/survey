@@ -52,7 +52,7 @@ export class ResponseEditComponent implements OnInit {
     // else{
     //   this.responseService.addResponse(newResponse);
     // }
-    // this.editMode = false;
+    this.editMode = false;
     form.reset();
     this.onCancel();
     this.router.navigate['/response'];

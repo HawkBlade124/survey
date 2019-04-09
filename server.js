@@ -21,9 +21,9 @@ mongoose.connect( "mongodb+srv://benful1:C92J2PCPfMOtfugM@survey-qlklq.mongodb.n
   .then(() => {
     console.log("Connected to database!");
   })
-  // .catch(() => {
-  //   console.log("Connection failed!");
-  // });
+  .catch(() => {
+    console.log("Connection failed!");
+  });
 
 var app = express(); // create an instance of express
 

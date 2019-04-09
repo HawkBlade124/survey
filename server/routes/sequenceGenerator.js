@@ -27,7 +27,7 @@ SequenceGenerator.prototype.nextId = function (collectionType) {
 
   switch (collectionType) {
     case "responses":
-      maxDocumentId++;
+      maxResponseId++;
       updateObject = {maxResponseId: maxResponseId};
       nextId = maxResponseId;
       break;

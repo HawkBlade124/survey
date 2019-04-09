@@ -10,7 +10,7 @@ export class ResponseService {
   responseSelectedEvent = new EventEmitter<Response>();
   responseListChangedEvent = new Subject<Response[]>();
   maxResponseId: number;
-  responses: Response[] = []
+  responses: Response[] = [];
   id: string;
 
   constructor(private http: HttpClient ) {
@@ -41,5 +41,14 @@ export class ResponseService {
 
    getResponse(index: string) {
     return this.responses[index];
+  }
+
+  deleteResponse(responseId: string) {
+    this.http.delete("http://localhost:3000/responses/" + responseId)
+      .subscribe(() => {
+        const updatedResponses = this.responses.filter(response => response.id !== responseId);
+        this.responses = updatedResponses;
+        this.responseListChangedEvent.next([...this.responses]);
+      });
   }
 }

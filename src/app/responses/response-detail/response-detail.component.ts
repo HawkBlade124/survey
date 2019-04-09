@@ -29,9 +29,8 @@ export class ResponseDetailComponent implements OnInit {
     this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
-  // onDelete(){
-  //   this.responseService.deleteResponse(this.response);
-  //   this.router.navigate(['/responses']);
-  // }
+  onDelete(responseId:string){
+    this.responseService.deleteResponse(responseId);
+  }
 
 }
