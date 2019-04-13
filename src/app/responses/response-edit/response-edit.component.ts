@@ -46,12 +46,12 @@ export class ResponseEditComponent implements OnInit {
   onSubmit(form:NgForm){
     const values = form.value;
     const newResponse = new Response('', values.name, values.major, values.food);
-    // if (this.editMode === true){
-    //   this.responseService.updateResponse(this.originalResponse, newResponse);
-    // }
-    // else{
-    //   this.responseService.addResponse(newResponse);
-    // }
+    if (this.editMode === true){
+      this.responseService.updateResponse(this.originalResponse, newResponse);
+    }
+    else{
+      this.responseService.addResponse(newResponse);
+    }
     this.editMode = false;
     form.reset();
     this.onCancel();

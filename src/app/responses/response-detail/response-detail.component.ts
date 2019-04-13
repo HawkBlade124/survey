@@ -28,8 +28,8 @@ export class ResponseDetailComponent implements OnInit {
   onEditResponse() {
     this.router.navigate(['edit'], {relativeTo: this.route});
   }
-  onDelete(responseId:string){
-    this.responseService.deleteResponse(responseId);
+  onDelete(){
+    this.responseService.deleteResponse(this.response);
   }
 
 }

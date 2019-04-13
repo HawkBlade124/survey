@@ -11,7 +11,7 @@ router.get("/", (req, res, next) => {
     });
   });
 
-  router.post("/", (req,res, next) =>{
+  router.post("/responses", (req,res, next) =>{
     const response = new Response({
       name: req.body.name,
       major: req.body.major,
@@ -25,11 +25,28 @@ router.get("/", (req, res, next) => {
     });
   });
 
-router.delete("/responses/:id", (req, res, next)=>{
-    Response.deleteOne({ _id: req.params.id }).then(result => {
+router.delete("/:id", (req, res, next)=>{
+  var query = { id: res.params.id };
+
+  Response.findOne(query, function (err, document) {
+    if (err) {
+      return response.status(500).json({
+        title: 'No Response Found',
+        error: err
+      });
+    }
+
+    if (!response) {
+      return response.status(500).json({
+        title: 'No Response Found',
+        error: { responseId: res.params.id }
+      })
+    }
+    Response.deleteOne({ _id: res.params.id }).then(result => {
       console.log(result);
-      res.status(200).json({ message: "Response deleted!"});
+      res.status(200).json({ message: "Response deleted!" });
     });
+  });
   });
 
   module.exports = router;

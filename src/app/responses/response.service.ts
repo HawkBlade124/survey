@@ -2,7 +2,6 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Response } from './response.model';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -31,6 +30,7 @@ export class ResponseService {
 
    getResponses(){
      this.http.get<{message: string, responses: Response[]}> ('http://localhost:3000/responses')
+     .pipe()
      .subscribe(
        (responseData) => {
          this.responses = responseData.responses;
@@ -44,12 +44,53 @@ export class ResponseService {
     return this.responses[index];
   }
 
-  deleteResponse(responseId: string) {
-    this.http.delete("http://localhost:3000/response/" + responseId)
-      .subscribe(() => {
-        const updatedResponses = this.responses.filter(response => response.id !== responseId);
-        this.responses = updatedResponses;
-        this.responsesUpdated.next([...this.responses]);
-      });
+  deleteResponse(response: Response) {
+    if (!response){
+      return;
+    }
+
+    this.http.delete('http://localhost:3000/responses/' + response.id)
+      .subscribe(
+        (responses: Response[]) => {
+          this.responses = responses;
+          this.responseListChangedEvent.next(this.responses.slice());
+        })
+  }
+
+  updateResponse(originalResponse: Response, newResponse: Response) {
+    if (!originalResponse || !newResponse){
+      return;
+    }
+
+    const pos = this.responses.indexOf(originalResponse);
+    if (pos < 0){
+      return;
+    }
+
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+      newResponse.id = originalResponse.id;
+
+    this.http.put('http://localhost:3000/responses' + originalResponse.id, newResponse,  {headers: headers})
+     .subscribe(
+        (response: Response) => {
+          this.responses[pos] = newResponse;
+          this.responseListChangedEvent.next(this.responses.slice());
+        })
+  }
+
+  addResponse(response: Response) {
+    if(!document){
+      return;
+    }
+
+    response.id = '';
+    const headers = new HttpHeaders({'Content-Type':'text/plain; charset=utf-8'});
+
+    this.http.post<{message: string, responses: Response}>('https://localhost:3000/responses', response,  {headers: headers}).subscribe(
+      (responseData) => {
+        this.responses.push(responseData.responses);
+        this.responseListChangedEvent.next(this.responses.slice());
+      }
+    );
   }
 }
